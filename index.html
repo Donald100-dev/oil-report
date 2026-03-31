@@ -3,83 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Báo Cáo Ô Nhiễm Ngành Dầu Khí</title>
+    <title>Báo Cáo Chi Tiết: Ô Nhiễm Ngành Dầu Khí</title>
     <style>
         :root {
-            --bg: #0d1117;
-            --card: #161b22;
-            --air: #ffce00;
-            --water: #00d2ff;
-            --spill: #ff4d4d;
-            --text: #c9d1d9;
+            --bg-dark: #0f172a;
+            --card-bg: #1e293b;
+            --accent-yellow: #facc15;
+            --accent-blue: #38bdf8;
+            --accent-red: #f87171;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.7;
             margin: 0;
-            padding: 20px;
+            padding: 0;
         }
 
         .container {
-            max-width: 900px;
+            max-width: 1100px;
             margin: 0 auto;
+            padding: 40px 20px;
         }
 
         header {
             text-align: center;
-            padding: 40px 0;
-            border-bottom: 1px solid #30363d;
-            margin-bottom: 40px;
+            margin-bottom: 60px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #334155;
         }
 
-        h1 { color: #f0f6fc; font-size: 2.2rem; text-transform: uppercase; margin: 0; }
-        .sub-title { color: #8b949e; font-style: italic; }
-
-        .section {
-            background: var(--card);
-            border: 1px solid #30363d;
-            border-radius: 12px;
-            padding: 30px;
-            margin-bottom: 30px;
-            transition: transform 0.2s;
+        h1 {
+            font-size: 2.5rem;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            margin-bottom: 10px;
         }
 
-        .section:hover { transform: scale(1.01); }
+        .subtitle {
+            color: var(--accent-yellow);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
 
-        h2 { font-size: 1.6rem; margin-top: 0; display: flex; align-items: center; }
-        
-        .badge { width: 15px; height: 15px; border-radius: 50%; margin-right: 15px; }
+        .pollution-section {
+            background: var(--card-bg);
+            border-radius: 16px;
+            margin-bottom: 50px;
+            overflow: hidden;
+            border: 1px solid #334155;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
 
-        .content-grid {
+        .section-header {
+            padding: 25px 40px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #334155;
+        }
+
+        .dot {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+
+        .grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 25px;
-            margin-top: 20px;
+            gap: 2px;
+            background: #334155; /* Màu của đường kẻ chia đôi */
         }
 
-        .column h3 {
-            font-size: 1.1rem;
+        .grid-item {
+            background: var(--card-bg);
+            padding: 40px;
+        }
+
+        h3 {
+            margin-top: 0;
+            font-size: 1.2rem;
             text-transform: uppercase;
-            margin-bottom: 15px;
-            padding-bottom: 5px;
-            border-bottom: 2px solid #30363d;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
         }
 
-        .column-cause h3 { color: #58a6ff; }
-        .column-effect h3 { color: #f85149; }
+        .cause-title { color: var(--accent-blue); }
+        .effect-title { color: var(--accent-red); }
 
-        ul { padding-left: 18px; }
-        li { margin-bottom: 10px; }
+        ul {
+            padding-left: 20px;
+            margin: 0;
+        }
 
-        b { color: #f0f6fc; }
+        li {
+            margin-bottom: 15px;
+            color: #cbd5e1;
+        }
 
-        footer { text-align: center; color: #8b949e; font-size: 0.8rem; margin-top: 50px; }
+        b { color: #fff; }
 
-        @media (max-width: 768px) {
-            .content-grid { grid-template-columns: 1fr; }
+        .chem-symbol {
+            color: var(--accent-yellow);
+            font-family: monospace;
+            font-weight: bold;
+        }
+
+        @media (max-width: 850px) {
+            .grid { grid-template-columns: 1fr; }
+            h1 { font-size: 1.8rem; }
         }
     </style>
 </head>
@@ -88,75 +129,83 @@
 <div class="container">
     <header>
         <h1>Báo Cáo Tác Động Môi Trường</h1>
-        <p class="sub-title">Phân tích 3 trọng tâm trong sản xuất và vận chuyển dầu mỏ</p>
+        <p class="subtitle">Ngành công nghiệp khai thác & vận chuyển dầu mỏ</p>
     </header>
 
-    <div class="section">
-        <h2 style="color: var(--air);"><div class="badge" style="background: var(--air);"></div>1. Ô Nhiễm Không Khí</h2>
-        <div class="content-grid">
-            <div class="column column-cause">
-                <h3>Nguyên nhân</h3>
+    <section class="pollution-section">
+        <div class="section-header" style="background: rgba(250, 204, 21, 0.1);">
+            <div class="dot" style="background: var(--accent-yellow);"></div>
+            1. Ô Nhiễm Không Khí (Air Pollution)
+        </div>
+        <div class="grid">
+            <div class="grid-item">
+                <h3 class="cause-title">Nguyên nhân tạo ra</h3>
                 <ul>
-                    <li><b>Đốt khí đồng hành (Flaring):</b> Giải phóng lượng lớn CO2, NOx và SO2 trực tiếp tại giàn khoan.</li>
-                    <li><b>Rò rỉ Methane (CH4):</b> Thất thoát khí vô hình từ các van áp suất và đường ống dẫn.</li>
-                    <li><b>Bụi mịn & Muội than:</b> Phát sinh từ quá trình vận hành máy móc khai thác công suất lớn.</li>
+                    <li><b>Đốt bỏ khí đồng hành (Flaring):</b> Tại các đỉnh tháp giàn khoan, khí dư thừa bị đốt bỏ, giải phóng lượng lớn <span class="chem-symbol">CO2, NOx, SO2</span>.</li>
+                    <li><b>Rò rỉ Methane (Fugitive Emissions):</b> Khí <span class="chem-symbol">CH4</span> thất thoát từ các van áp suất, khớp nối đường ống hoặc bồn chứa hở.</li>
+                    <li><b>Bụi mịn & Muội than:</b> Hạt carbon đen phát sinh từ quá trình đốt nhiên liệu vận hành máy móc giàn khoan.</li>
                 </ul>
             </div>
-            <div class="column column-effect">
-                <h3>Hậu quả & Ảnh hưởng</h3>
+            <div class="grid-item">
+                <h3 class="effect-title">Hậu quả & Ảnh hưởng</h3>
                 <ul>
-                    <li><b>Biến đổi khí hậu:</b> CH4 giữ nhiệt mạnh hơn CO2 gấp 25 lần, đẩy nhanh tốc độ nóng lên toàn cầu.</li>
-                    <li><b>Mưa Axit:</b> Các oxit lưu huỳnh kết hợp hơi ẩm làm chết thảm thực vật và mục nát công trình kiến trúc.</li>
-                    <li><b>Sức khỏe:</b> Gây sương mù quang hóa và các bệnh hô hấp mãn tính cho cộng đồng.</li>
+                    <li><b>Biến đổi khí hậu:</b> Khí <span class="chem-symbol">CH4</span> giữ nhiệt gấp 25 lần <span class="chem-symbol">CO2</span>, khiến Trái đất nóng lên nhanh chóng.</li>
+                    <li><b>Mưa Axit:</b> <span class="chem-symbol">SO2</span> và <span class="chem-symbol">NOx</span> kết hợp hơi ẩm tạo thành axit <span class="chem-symbol">H2SO4, HNO3</span>, tàn phá thực vật và công trình xây dựng.</li>
+                    <li><b>Sức khỏe:</b> Gây sương mù quang hóa (Smog) và các bệnh hô hấp mãn tính cho con người.</li>
                 </ul>
             </div>
         </div>
-    </div>
+    </section>
 
-    <div class="section">
-        <h2 style="color: var(--water);"><div class="badge" style="background: var(--water);"></div>2. Ô Nhiễm Nguồn Nước & Kim Loại</h2>
-        <div class="content-grid">
-            <div class="column column-cause">
-                <h3>Nguyên nhân</h3>
+    <section class="pollution-section">
+        <div class="section-header" style="background: rgba(56, 189, 248, 0.1);">
+            <div class="dot" style="background: var(--accent-blue);"></div>
+            2. Ô Nhiễm Mạch Nước Ngầm & Nhiễm Kim Loại
+        </div>
+        <div class="grid">
+            <div class="grid-item">
+                <h3 class="cause-title">Nguyên nhân tạo ra</h3>
                 <ul>
-                    <li><b>Nước đồng hành (Produced Water):</b> Nước từ vỉa đá sâu chứa nồng độ muối cực cao và kim loại nặng tự nhiên.</li>
-                    <li><b>Dung dịch bùn khoan:</b> Các hóa chất bôi trơn và làm nặng mũi khoan nếu không được thu hồi đúng cách.</li>
+                    <li><b>Nước đồng hành (Produced Water):</b> Nước lấy lên cùng dầu chứa muối nồng độ cao và kim loại nặng: <span class="chem-symbol">Hg (Thủy ngân), Pb (Chì), As (Asen)</span>.</li>
+                    <li><b>Dung dịch bùn khoan:</b> Các hóa chất bôi trơn, làm mát mũi khoan ngấm trực tiếp xuống đất nếu không được thu hồi tốt.</li>
                 </ul>
             </div>
-            <div class="column column-effect">
-                <h3>Hậu quả & Ảnh hưởng</h3>
+            <div class="grid-item">
+                <h3 class="effect-title">Hậu quả & Ảnh hưởng</h3>
                 <ul>
-                    <li><b>Tích tụ sinh học:</b> Kim loại nặng (Hg, Pb, As) thâm nhập chuỗi thức ăn, gây ung thư và nhiễm độc thần kinh.</li>
-                    <li><b>Hủy hoại mạch nước ngầm:</b> Xâm nhập mặn làm mất nguồn nước sinh hoạt sạch của cư dân địa phương.</li>
-                    <li><b>Đất hoang hóa:</b> Làm biến đổi cấu trúc lý hóa của đất canh tác quanh khu vực khai thác.</li>
+                    <li><b>Tích tụ sinh học:</b> Kim loại nặng không phân hủy, đi từ mạch nước ngầm vào chuỗi thức ăn, gây ung thư và nhiễm độc thần kinh.</li>
+                    <li><b>Hủy hoại tài nguyên nước:</b> Xâm nhập mặn và nhiễm kim loại nặng khiến nguồn nước sinh hoạt không thể phục hồi trong hàng chục năm.</li>
                 </ul>
             </div>
         </div>
-    </div>
+    </section>
 
-    <div class="section">
-        <h2 style="color: var(--spill);"><div class="badge" style="background: var(--spill);"></div>3. Ô Nhiễm Tràn Dầu</h2>
-        <div class="content-grid">
-            <div class="column column-cause">
-                <h3>Nguyên nhân</h3>
+    <section class="pollution-section">
+        <div class="section-header" style="background: rgba(248, 113, 113, 0.1);">
+            <div class="dot" style="background: var(--accent-red);"></div>
+            3. Ô Nhiễm Tràn Dầu (Oil Spills)
+        </div>
+        <div class="grid">
+            <div class="grid-item">
+                <h3 class="cause-title">Nguyên nhân tạo ra</h3>
                 <ul>
-                    <li><b>Sự cố đường ống:</b> Nứt vỡ do ăn mòn hóa học, áp suất đột ngột hoặc lỗi kỹ thuật bảo trì.</li>
-                    <li><b>Tai nạn vận chuyển:</b> Va chạm tàu chở dầu trên biển hoặc lật xe bồn dẫn đến rò rỉ hàng nghìn tấn dầu thô.</li>
+                    <li><b>Sự cố đường ống:</b> Nứt vỡ do ăn mòn hóa chất, thay đổi áp suất đột ngột hoặc lỗi bảo trì kỹ thuật.</li>
+                    <li><b>Tai nạn vận chuyển:</b> Va chạm tàu chở dầu trên biển hoặc lật xe bồn, giải phóng hàng nghìn tấn dầu thô tức thì.</li>
                 </ul>
             </div>
-            <div class="column column-effect">
+            <div class="grid-item">
                 <h3>Hậu quả & Ảnh hưởng</h3>
                 <ul>
-                    <li><b>Ngạt khí & Thiếu sáng:</b> Màng dầu ngăn cản Oxy hòa tan và ánh sáng, tiêu diệt tảo biển và cá hàng loạt.</li>
-                    <li><b>Diệt chủng hệ sinh thái ven bờ:</b> Dầu bám chặt phá hủy rạn san hô và rừng ngập mặn (nơi sinh sản của hải sản).</li>
-                    <li><b>Thiệt hại kinh tế:</b> Tê liệt ngành du lịch biển và đánh bắt xa bờ trong thời gian dài.</li>
+                    <li><b>Ngạt khí & Thiếu sáng:</b> Màng dầu ngăn cản Oxy hòa tan và ánh sáng mặt trời, gây chết hàng loạt sinh vật thủy sinh.</li>
+                    <li><b>Phá hủy hệ sinh thái ven bờ:</b> Dầu bám chặt tiêu diệt rừng ngập mặn và rạn san hô - nơi cư trú của hầu hết các loài hải sản.</li>
+                    <li><b>Kinh tế:</b> Tê liệt hoàn toàn ngành đánh bắt hải sản và du lịch biển của các khu vực chịu ảnh hưởng.</li>
                 </ul>
             </div>
         </div>
-    </div>
+    </section>
 
-    <footer>
-        &copy; 2026 - Kịch bản Video Báo cáo Khoa học
+    <footer style="text-align: center; padding: 20px; color: var(--text-muted); font-size: 0.9rem;">
+        &copy; 2026 - Báo cáo Phân tích Chuyên sâu Công nghiệp Dầu khí
     </footer>
 </div>
 
